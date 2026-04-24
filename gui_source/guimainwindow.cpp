@@ -1,4 +1,4 @@
-/* Copyright (c) 2020-2025 hors<horsicq@gmail.com>
+/* Copyright (c) 2020-2026 hors<horsicq@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,16 @@ GuiMainWindow::GuiMainWindow(QWidget *pParent) : QMainWindow(pParent), ui(new Ui
 {
     ui->setupUi(this);
 
+#ifdef USE_XSIMD
+    xsimd_init();
+#endif
+
+#ifdef USE_YARA
+    XYara::initialize();
+#endif
+
+    XOptions::registerCodecs();
+
     XOptions::adjustToolButton(ui->toolButtonAbout, XOptions::ICONTYPE_INFO);
     XOptions::adjustToolButton(ui->toolButtonOptions, XOptions::ICONTYPE_OPTION);
     XOptions::adjustToolButton(ui->toolButtonDemangle, XOptions::ICONTYPE_DEMANGLE);
@@ -43,11 +53,6 @@ GuiMainWindow::GuiMainWindow(QWidget *pParent) : QMainWindow(pParent), ui(new Ui
     ui->toolButtonRecentFiles->setToolTip(tr("Recent files"));
     ui->lineEditFileName->setToolTip(tr("File name"));
     ui->checkBoxAdvanced->setToolTip(tr("Advanced"));
-
-#ifdef USE_YARA
-    XYara::initialize();
-#endif
-    XOptions::registerCodecs();
 
     g_bFullScreen = false;
 
@@ -75,10 +80,29 @@ GuiMainWindow::GuiMainWindow(QWidget *pParent) : QMainWindow(pParent), ui(new Ui
     g_xOptions.addID(XOptions::ID_FILE_SAVEBACKUP, true);
     g_xOptions.addID(XOptions::ID_FILE_SAVERECENTFILES, true);
 #ifdef Q_OS_WIN
-    g_xOptions.addID(XOptions::ID_FILE_CONTEXT, "*");
+    if (!g_xOptions.isNative()) {
+        g_xOptions.addID(XOptions::ID_FILE_CONTEXT, "*");
+    }
 #endif
 
-    DIEOptionsWidget::setDefaultValues(&g_xOptions);
+    g_xOptions.addID(XOptions::ID_FEATURE_READBUFFERSIZE, 8 * 1024);
+    g_xOptions.addID(XOptions::ID_FEATURE_FILEBUFFERSIZE, 2 * 1024 * 1024);
+
+#ifdef USE_XSIMD
+#ifdef Q_PROCESSOR_X86
+    g_xOptions.addID(XOptions::ID_FEATURE_SSE2, true);
+    g_xOptions.addID(XOptions::ID_FEATURE_AVX2, true);
+#endif
+#endif
+
+    g_xOptions.addID(XOptions::ID_SCAN_ENGINE_DIE_ENABLED, true);
+    g_xOptions.addID(XOptions::ID_SCAN_ENGINE_NFD_ENABLED, true);
+    g_xOptions.addID(XOptions::ID_SCAN_ENGINE_PEID_ENABLED, true);
+#ifdef USE_YARA
+    g_xOptions.addID(XOptions::ID_SCAN_ENGINE_YARA_ENABLED, true);
+#endif
+
+    XScanEngineOptionsWidget::setDefaultValues(&g_xOptions);
     SearchSignaturesOptionsWidget::setDefaultValues(&g_xOptions);
     XHexViewOptionsWidget::setDefaultValues(&g_xOptions);
     XDisasmViewOptionsWidget::setDefaultValues(&g_xOptions);
@@ -86,11 +110,11 @@ GuiMainWindow::GuiMainWindow(QWidget *pParent) : QMainWindow(pParent), ui(new Ui
     XInfoDBOptionsWidget::setDefaultValues(&g_xOptions);
 
     g_xOptions.addID(XOptions::ID_SCAN_ENGINE, "auto");
-#ifdef USE_YARA
-    g_xOptions.addID(XOptions::ID_SCAN_YARARULESPATH, "$data/yara_rules");
-#endif
-    g_xOptions.load();
 
+    g_xOptions.load();
+#if defined(Q_OS_WIN) && defined(X_BUILD_INSTALL)
+    checkMsixResources();
+#endif
     g_xShortcuts.setName(X_SHORTCUTSFILE);
     g_xShortcuts.setNative(g_xOptions.isNative(), g_xOptions.getApplicationDataPath());
 
@@ -141,6 +165,9 @@ GuiMainWindow::~GuiMainWindow()
     delete ui;
 #ifdef USE_YARA
     XYara::finalize();
+#endif
+#ifdef USE_XSIMD
+    xsimd_cleanup();
 #endif
 }
 
@@ -328,3 +355,42 @@ void GuiMainWindow::fullScreenSlot()
         showNormal();
     }
 }
+
+#if defined(Q_OS_WIN) && defined(X_BUILD_INSTALL)
+void GuiMainWindow::checkMsixResources()
+{
+    if (g_xOptions.isMsixPackage()) {
+        QString localStatePath = g_xOptions.getApplicationDataPath();
+        // Check for db directory
+        QString dbPath = localStatePath + QDir::separator() + "db";
+        bool dbExists = QDir(dbPath).exists();
+        // Check for yara_rules directory
+        QString yaraPath = localStatePath + QDir::separator() + "yara_rules";
+        bool yaraExists = QDir(yaraPath).exists();
+        if (!dbExists || !yaraExists) {
+            // Resources missing - launch the downloader
+            QString missingResources;
+            if (!dbExists) missingResources += "Database (db)\n";
+            if (!yaraExists) missingResources += "YARA Rules (yara_rules)\n";
+            QMessageBox::StandardButton reply = QMessageBox::question(this, tr("Missing Resources"),
+                                                                      tr("The following resources are missing from the MSIX package") + QString(":\n\n") + missingResources +
+                                                                          QString("\n") + tr("Path") + QString(": ") + localStatePath + tr("\n\nWould you like to download them now?"),
+                                                                      QMessageBox::Yes | QMessageBox::No);
+            if (reply == QMessageBox::Yes) {
+                launchResourceDownloader(localStatePath);
+            } else {
+            }
+        } else {
+            // Both exist - optionally verify they're not empty
+        }
+    }
+}
+
+void GuiMainWindow::launchResourceDownloader(const QString &targetPath)
+{
+    XUpdate *updateDialog = new XUpdate(this, targetPath);
+    updateDialog->setWindowModality(Qt::ApplicationModal);
+    updateDialog->setAttribute(Qt::WA_DeleteOnClose);
+    updateDialog->show();
+}
+#endif  // Q_OS_WIN && X_BUILD_INSTALL

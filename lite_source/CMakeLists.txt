@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(diel VERSION 3.10 LANGUAGES CXX)
+project(diel VERSION 3.20 LANGUAGES CXX)
 
 include_guard(DIRECTORY)
 
@@ -10,7 +10,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 file(MAKE_DIRECTORY ../release)
@@ -18,10 +18,10 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ../release)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ../release)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../release)
 
-find_package(QT NAMES Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt5 COMPONENTS Concurrent REQUIRED)
-find_package(Qt5 COMPONENTS Script REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Concurrent REQUIRED)
+find_package(Qt6 COMPONENTS Qml REQUIRED)
 
 add_definitions(-DUSE_DEX)
 add_definitions(-DUSE_PDF)
@@ -58,10 +58,11 @@ target_link_libraries(${PROJECT_NAME} bzip2)
 target_link_libraries(${PROJECT_NAME} lzma)
 target_link_libraries(${PROJECT_NAME} zlib)
 target_link_libraries(${PROJECT_NAME} capstone_x86)
+target_link_libraries(${PROJECT_NAME} ppmd)
 
-target_link_libraries(${PROJECT_NAME} Qt5::Widgets)
-target_link_libraries(${PROJECT_NAME} Qt5::Concurrent)
-target_link_libraries(${PROJECT_NAME} Qt5::Script)
+target_link_libraries(${PROJECT_NAME} Qt6::Widgets)
+target_link_libraries(${PROJECT_NAME} Qt6::Concurrent)
+target_link_libraries(${PROJECT_NAME} Qt6::Qml)
 
 if(WIN32)
     target_link_libraries(${PROJECT_NAME} Wintrust)

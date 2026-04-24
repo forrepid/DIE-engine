@@ -28,13 +28,16 @@ copy %X_SOURCE_PATH%\build\release\diel.exe %X_SOURCE_PATH%\release\%X_BUILD_NAM
 xcopy %X_SOURCE_PATH%\XStyles\qss %X_SOURCE_PATH%\release\%X_BUILD_NAME%\qss /E /I
 xcopy %X_SOURCE_PATH%\Detect-It-Easy\db %X_SOURCE_PATH%\release\%X_BUILD_NAME%\db /E /I
 xcopy %X_SOURCE_PATH%\Detect-It-Easy\db_custom %X_SOURCE_PATH%\release\%X_BUILD_NAME%\db_custom /E /I
+xcopy %X_SOURCE_PATH%\Detect-It-Easy\db_extra %X_SOURCE_PATH%\release\%X_BUILD_NAME%\db_extra /E /I
 xcopy %X_SOURCE_PATH%\XInfoDB\info %X_SOURCE_PATH%\release\%X_BUILD_NAME%\info /E /I
 xcopy %X_SOURCE_PATH%\signatures\crypto.db %X_SOURCE_PATH%\release\%X_BUILD_NAME%\signatures\
 xcopy %X_SOURCE_PATH%\XYara\yara_rules %X_SOURCE_PATH%\release\%X_BUILD_NAME%\yara_rules /E /I
+xcopy %X_SOURCE_PATH%\XPEID\peid %X_SOURCE_PATH%\release\%X_BUILD_NAME%\peid /E /I
 
 call %X_SOURCE_PATH%\build_tools\windows.cmd deploy_qt_library Qt6Widgets
 call %X_SOURCE_PATH%\build_tools\windows.cmd deploy_qt_library Qt6Gui
 call %X_SOURCE_PATH%\build_tools\windows.cmd deploy_qt_library Qt6Core
+call %X_SOURCE_PATH%\build_tools\windows.cmd deploy_qt_library Qt6Concurrent
 call %X_SOURCE_PATH%\build_tools\windows.cmd deploy_qt_library Qt6Core5Compat
 call %X_SOURCE_PATH%\build_tools\windows.cmd deploy_qt_library Qt6Network
 call %X_SOURCE_PATH%\build_tools\windows.cmd deploy_qt_library Qt6Qml

@@ -94,9 +94,6 @@
 [submodule "XDemangleWidget"]
 	path = XDemangleWidget
 	url = https://github.com/horsicq/XDemangleWidget.git
-[submodule "build_tools"]
-	path = build_tools
-	url = https://github.com/horsicq/build_tools
 [submodule "XCppfilt"]
 	path = XCppfilt
 	url = https://github.com/horsicq/XCppfilt
@@ -166,3 +163,12 @@
 [submodule "XStaticUnpacker"]
 	path = XStaticUnpacker
 	url = https://github.com/horsicq/XStaticUnpacker
+[submodule "XPEID"]
+	path = XPEID
+	url = https://github.com/horsicq/XPEID
+[submodule "build_tools"]
+	path = build_tools
+	url = https://github.com/horsicq/build_tools.git
+[submodule "peid_widget"]
+	path = peid_widget
+	url = https://github.com/horsicq/peid_widget

@@ -4,6 +4,7 @@ QT -= gui
 XCONFIG += use_dex
 XCONFIG += use_archive
 XCONFIG += use_pdf
+XCONFIG += use_xsimd
 
 CONFIG += c++11
 
@@ -45,12 +46,12 @@ HEADERS += \
 
 win32 {
     CONFIG -= embed_manifest_exe
-    QMAKE_MANIFEST = windows.manifest.xml
-    VERSION = 3.10.0.0
+    QMAKE_MANIFEST = $$PWD/windows.manifest.xml
+    VERSION = 3.20
     QMAKE_TARGET_COMPANY = NTInfo
     QMAKE_TARGET_PRODUCT = Detect It Easy
-    QMAKE_TARGET_DESCRIPTION = Detect It Easy(DiE)
-    QMAKE_TARGET_COPYRIGHT = horsicq@gmail.com
+    QMAKE_TARGET_DESCRIPTION = Detect It Easy (DiE)
+    QMAKE_TARGET_COPYRIGHT = Copyright (C) 2012-2026 Hors
 }
 
 DISTFILES += \

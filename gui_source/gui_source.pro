@@ -1,8 +1,8 @@
 QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += widgets
 
 CONFIG += c++11
+
 TARGET = die
 
 XCONFIG += use_dex
@@ -10,6 +10,7 @@ XCONFIG += use_pdf
 XCONFIG += use_archive
 XCONFIG += use_yara
 XCONFIG += use_die
+XCONFIG += use_xsimd
 
 macx {
     TARGET = DiE
@@ -39,6 +40,7 @@ FORMS += \
     guimainwindow.ui
 
 DEFINES  += NOMINMAX
+
 include(../build.pri)
 
 !contains(XCONFIG, xmimewidget) {
@@ -66,18 +68,32 @@ include(../build.pri)
     include(../XAboutWidget/xaboutwidget.pri)
 }
 
+!contains(XCONFIG, xstyles) {
+    XCONFIG += xstyles
+    include(../XStyles/xstyles.pri)
+}
+
 RESOURCES += \
     rsrc.qrc
 
 win32 {
     RC_ICONS = ../icons/main.ico
     CONFIG -= embed_manifest_exe
-    QMAKE_MANIFEST = windows.manifest.xml
-    VERSION = 3.10.0.0
+    QMAKE_MANIFEST = $$PWD/windows.manifest.xml
+    VERSION = 3.20
     QMAKE_TARGET_COMPANY = NTInfo
     QMAKE_TARGET_PRODUCT = Detect It Easy
-    QMAKE_TARGET_DESCRIPTION = Detect It Easy(DiE)
-    QMAKE_TARGET_COPYRIGHT = horsicq@gmail.com
+    QMAKE_TARGET_DESCRIPTION = Detect It Easy (DiE)
+    QMAKE_TARGET_COPYRIGHT = Copyright (C) 2012-2026 Hors
+
+    contains(DEFINES, X_BUILD_INSTALL) {
+        LIBS += -lwinhttp
+
+        !contains(XCONFIG, xupdate) {
+            XCONFIG += xupdate
+            include(../XUpdate/xupdate.pri)
+        }
+    }
 }
 
 macx {
@@ -87,5 +103,6 @@ macx {
 DISTFILES += \
     ../CMakeLists.txt \
     ../README.md \
+    ../LICENSE \
     ../release_version.txt \
     CMakeLists.txt

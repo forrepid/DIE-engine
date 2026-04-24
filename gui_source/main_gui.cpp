@@ -1,4 +1,4 @@
-/* Copyright (c) 2020-2025 hors<horsicq@gmail.com>
+/* Copyright (c) 2020-2026 hors<horsicq@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -50,6 +50,8 @@ int main(int argc, char *argv[])
     }
 
     XSingleApplication app(argc, argv);
+
+    app.setProperty("dataPathAlt0", "/opt/detect-it-easy");
 
 #ifdef Q_OS_LINUX
 #if QT_VERSION >= QT_VERSION_CHECK(5, 7, 0)

@@ -1,4 +1,4 @@
-/* Copyright (c) 2020-2025 hors<horsicq@gmail.com>
+/* Copyright (c) 2020-2026 hors<horsicq@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@
 #include <QMessageBox>
 
 #include "../global.h"
-#include "dieoptionswidget.h"
+#include "xscanengineoptionswidget.h"
 #include "searchsignaturesoptionswidget.h"
 #include "xdisasmviewoptionswidget.h"
 #include "xhexviewoptionswidget.h"
@@ -52,12 +52,12 @@ protected:
 
 private:
     Ui::DialogOptions *ui;
-    DIEOptionsWidget *g_pDIEOptionsWidget;
-    SearchSignaturesOptionsWidget *g_pSearchSignaturesOptionsWidget;
-    XHexViewOptionsWidget *g_pXHexViewOptionsWidget;
-    XDisasmViewOptionsWidget *g_pXDisasmViewOptionsWidget;
-    XOnlineToolsOptionsWidget *g_pXOnlineToolsOptionsWidget;
-    XInfoDBOptionsWidget *g_pXInfoDBOptionsWidget;
+    XScanEngineOptionsWidget *m_pScanEngineOptionsWidget;
+    SearchSignaturesOptionsWidget *m_pSearchSignaturesOptionsWidget;
+    XHexViewOptionsWidget *m_pXHexViewOptionsWidget;
+    XDisasmViewOptionsWidget *m_pXDisasmViewOptionsWidget;
+    XOnlineToolsOptionsWidget *m_pXOnlineToolsOptionsWidget;
+    XInfoDBOptionsWidget *m_pXInfoDBOptionsWidget;
 };
 
 #endif  // DIALOGOPTIONS_H

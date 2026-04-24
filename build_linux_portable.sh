@@ -32,7 +32,7 @@ if [ -z "$X_ERROR" ]; then
         cp -f $X_SOURCE_PATH/build/release/diel                             $X_SOURCE_PATH/release/$X_BUILD_NAME/base/
         
         cp -R $X_QT_INSTALL_PLUGINS/platforms/libqxcb.so                    $X_SOURCE_PATH/release/$X_BUILD_NAME/base/platforms/
-        cp -R $X_QT_INSTALL_PLUGINS/sqldrivers/qsqlite.dll                  $X_SOURCE_PATH/release/$X_BUILD_NAME/base/sqldrivers/
+        cp -R $X_QT_INSTALL_PLUGINS/sqldrivers/libqsqlite.so                $X_SOURCE_PATH/release/$X_BUILD_NAME/base/sqldrivers/
         
         cp -Lr $X_QT_INSTALL_LIBS/libQt5Core.so.5                           $X_SOURCE_PATH/release/$X_BUILD_NAME/base/
         cp -Lr $X_QT_INSTALL_LIBS/libQt5Svg.so.5                            $X_SOURCE_PATH/release/$X_BUILD_NAME/base/
@@ -50,12 +50,14 @@ if [ -z "$X_ERROR" ]; then
         cp -Rf $X_SOURCE_PATH/XInfoDB/info/                                 $X_SOURCE_PATH/release/$X_BUILD_NAME/base/
         cp -Rf $X_SOURCE_PATH/Detect-It-Easy/db/                            $X_SOURCE_PATH/release/$X_BUILD_NAME/base/
 		cp -Rf $X_SOURCE_PATH/Detect-It-Easy/db_custom/                     $X_SOURCE_PATH/release/$X_BUILD_NAME/base/
+		cp -Rf $X_SOURCE_PATH/Detect-It-Easy/db_extra/                      $X_SOURCE_PATH/release/$X_BUILD_NAME/base/
         cp -Rf $X_SOURCE_PATH/XYara/yara_rules/                             $X_SOURCE_PATH/release/$X_BUILD_NAME/base/
         mkdir -p $X_SOURCE_PATH/release/$X_BUILD_NAME/base/lang/
         cp -f $X_SOURCE_PATH/gui_source/translation/*.qm                    $X_SOURCE_PATH/release/$X_BUILD_NAME/base/lang/
         mkdir -p $X_SOURCE_PATH/release/$X_BUILD_NAME/base/signatures/
         cp -f $X_SOURCE_PATH/signatures/crypto.db                           $X_SOURCE_PATH/release/$X_BUILD_NAME/base/signatures/
         cp -Rf $X_SOURCE_PATH/images                                        $X_SOURCE_PATH/release/$X_BUILD_NAME/base/
+        cp -Rf $X_SOURCE_PATH/XPEID/peid/                                   $X_SOURCE_PATH/release/$X_BUILD_NAME/base/
         
         create_run_shell $X_SOURCE_PATH/release/$X_BUILD_NAME/die.sh die
         create_run_shell $X_SOURCE_PATH/release/$X_BUILD_NAME/diec.sh diec

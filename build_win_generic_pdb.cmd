@@ -29,13 +29,16 @@ copy %X_SOURCE_PATH%\build\release\diec.pdb %X_SOURCE_PATH%\release\%X_BUILD_NAM
 copy %X_SOURCE_PATH%\build\release\diel.pdb %X_SOURCE_PATH%\release\%X_BUILD_NAME%\
 xcopy %X_SOURCE_PATH%\XStyles\qss %X_SOURCE_PATH%\release\%X_BUILD_NAME%\qss /E /I
 xcopy %X_SOURCE_PATH%\Detect-It-Easy\db %X_SOURCE_PATH%\release\%X_BUILD_NAME%\db /E /I
+xcopy %X_SOURCE_PATH%\Detect-It-Easy\db_extra %X_SOURCE_PATH%\release\%X_BUILD_NAME%\db_extra /E /I
 xcopy %X_SOURCE_PATH%\Detect-It-Easy\info %X_SOURCE_PATH%\release\%X_BUILD_NAME%\info /E /I
 xcopy %X_SOURCE_PATH%\signatures\crypto.db %X_SOURCE_PATH%\release\%X_BUILD_NAME%\signatures\
 xcopy %X_SOURCE_PATH%\images %X_SOURCE_PATH%\release\%X_BUILD_NAME%\images /E /I
+xcopy %X_SOURCE_PATH%\XPEID\peid %X_SOURCE_PATH%\release\%X_BUILD_NAME%\peid /E /I
 
 call %X_SOURCE_PATH%\build_tools\windows.cmd deploy_qt_library Qt5Widgets
 call %X_SOURCE_PATH%\build_tools\windows.cmd deploy_qt_library Qt5Gui
 call %X_SOURCE_PATH%\build_tools\windows.cmd deploy_qt_library Qt5Core
+call %X_SOURCE_PATH%\build_tools\windows.cmd deploy_qt_library Qt5Concurrent
 call %X_SOURCE_PATH%\build_tools\windows.cmd deploy_qt_library Qt5OpenGL
 call %X_SOURCE_PATH%\build_tools\windows.cmd deploy_qt_library Qt5Svg
 call %X_SOURCE_PATH%\build_tools\windows.cmd deploy_qt_library Qt5Widgets
