@@ -1,5 +1,5 @@
 pkgname=detect-it-easy
-pkgver=3.22
+pkgver=4.0.0
 pkgrel=1
 pkgdesc='Detect It Easy (DIE) is a program for determining types of files'
 arch=('x86_64')
@@ -22,6 +22,7 @@ depends=(
   'systemd-libs'
 )
 makedepends=(
+  'cmake'
   'git'
   'qt5-tools'
 )
@@ -41,21 +42,15 @@ build() {
   cd "$_srcname" || return
   echo "${_prefix}Building detect-it-easy"
 
-  _subdirs="build_libs gui_source console_source lite_source"
+  cmake \
+    -B build \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DCMAKE_RUNTIME_OUTPUT_DIRECTORY="$(pwd)/build/release" \
+    -DCMAKE_C_FLAGS_RELEASE="${CFLAGS} -DNDEBUG" \
+    -DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS} -DNDEBUG"
 
-  for _subdir in $_subdirs; do
-    pushd "$_subdir" || return
-    echo "${_prefix}Building $_subdir"
-    qmake-qt5 PREFIX=/usr QMAKE_CFLAGS="${CFLAGS}" QMAKE_CXXFLAGS="${CXXFLAGS}" QMAKE_LFLAGS="${LDFLAGS}" "$_subdir.pro"
-    make -f Makefile clean
-    make -f Makefile
-    popd || return
-  done
-
-  echo "${_prefix}Running Qt's Linguist tool chain for gui_source"
-  cd gui_source || return
-  lupdate gui_source_tr.pro
-  lrelease gui_source_tr.pro
+  cmake --build build -j$(nproc)
 }
 
 package() {
@@ -71,14 +66,14 @@ package() {
   install -Dm 755 build/release/diel -t "$pkgdir"/opt/"${pkgname}"
 
   echo "${_prefix}Copying the package files"
-  install -Dm 644 gui_source/translation/* -t "$pkgdir"/opt/"${pkgname}"/lang
-  install -Dm 644 XStyles/qss/* -t "$pkgdir"/opt/"${pkgname}"/qss
-  cp -r XInfoDB/info/* -t "$pkgdir"/opt/"${pkgname}"/info/
-  cp -r Detect-It-Easy/db/* -t "$pkgdir"/opt/"${pkgname}"/db/
-  cp -r Detect-It-Easy/db_extra/* -t "$pkgdir"/opt/"${pkgname}"/db_extra/
-  cp -r XYara/yara_rules/* -t "$pkgdir"/opt/"${pkgname}"/yara_rules/
-  cp -r XPEID/peid/* -t "$pkgdir"/opt/"${pkgname}"/peid/
-  install -Dm 644 signatures/crypto.db -t "$pkgdir"/opt/"${pkgname}"/signatures
+  install -Dm 644 build/src/translations/*.qm -t "$pkgdir"/opt/"${pkgname}"/lang
+  install -Dm 644 dep/XStyles/qss/* -t "$pkgdir"/opt/"${pkgname}"/qss
+  cp -r dep/XInfoDB/info/* -t "$pkgdir"/opt/"${pkgname}"/info/
+  cp -r dep/Detect-It-Easy/db/* -t "$pkgdir"/opt/"${pkgname}"/db/
+  cp -r dep/Detect-It-Easy/db_extra/* -t "$pkgdir"/opt/"${pkgname}"/db_extra/
+  cp -r dep/XYara/yara_rules/* -t "$pkgdir"/opt/"${pkgname}"/yara_rules/
+  cp -r dep/XPEID/peid/* -t "$pkgdir"/opt/"${pkgname}"/peid/
+  install -Dm 644 dep/signatures/crypto.db -t "$pkgdir"/opt/"${pkgname}"/signatures
   cp -r images/* -t "$pkgdir"/opt/"${pkgname}"/images/
 
   echo "${_prefix}Setting up /usr/bin launchers"
