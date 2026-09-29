@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sq_AL">
+<TS version="2.1" language="ja">
 <context>
     <name>DialogAbout</name>
     <message>
         <location filename="../src/gui/dialogabout.ui" line="17"/>
         <source>About</source>
-        <translation>Rreth</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/dialogabout.ui" line="51"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/dialogabout.cpp" line="38"/>
         <source>Bugreports</source>
-        <translation>Raportet e gabimeve</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/dialogabout.cpp" line="42"/>
         <source>Website</source>
-        <translation>Faqja e internetit</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/dialogabout.cpp" line="47"/>
         <location filename="../src/gui/dialogabout.cpp" line="52"/>
         <source>Donate</source>
-        <translation>Dhurim</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/dialogabout.cpp" line="57"/>
         <source>Source code</source>
-        <translation>Kodi burimor</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -40,37 +40,37 @@
     <message>
         <location filename="../src/gui/dialogoptions.ui" line="17"/>
         <source>Options</source>
-        <translation>Opsionet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/dialogoptions.cpp" line="38"/>
         <source>Scan</source>
-        <translation>Skanim</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/dialogoptions.cpp" line="41"/>
         <source>Signatures</source>
-        <translation>Nënshkrime</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/dialogoptions.cpp" line="44"/>
         <source>Hex</source>
-        <translation>Hex</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/dialogoptions.cpp" line="47"/>
         <source>Disasm</source>
-        <translation>Disasm</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/dialogoptions.cpp" line="50"/>
         <source>Online tools</source>
-        <translation>Mjete online</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/dialogoptions.cpp" line="53"/>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -78,7 +78,7 @@
     <message>
         <location filename="../src/gui/dialogselectstyle.ui" line="14"/>
         <source>Style</source>
-        <translation>Stili</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -87,86 +87,86 @@
         <location filename="../src/gui/guimainwindow.ui" line="21"/>
         <location filename="../src/gui/guimainwindow.cpp" line="54"/>
         <source>File name</source>
-        <translation>Emri i skedarit</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/guimainwindow.ui" line="103"/>
         <location filename="../src/gui/guimainwindow.cpp" line="55"/>
         <source>Advanced</source>
-        <translation>I avancuar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/guimainwindow.ui" line="116"/>
         <location filename="../src/gui/guimainwindow.cpp" line="49"/>
         <source>Demangle</source>
-        <translation>Demangle</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/guimainwindow.ui" line="142"/>
         <location filename="../src/gui/guimainwindow.cpp" line="52"/>
         <source>Shortcuts</source>
-        <translation>Shkurtoret</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/guimainwindow.ui" line="155"/>
         <location filename="../src/gui/guimainwindow.cpp" line="48"/>
         <source>Options</source>
-        <translation>Opsionet</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/guimainwindow.ui" line="168"/>
         <location filename="../src/gui/guimainwindow.cpp" line="47"/>
         <source>About</source>
-        <translation>Rreth</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/guimainwindow.ui" line="181"/>
         <location filename="../src/gui/guimainwindow.cpp" line="50"/>
         <source>Exit</source>
-        <translation>Dalje</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/guimainwindow.cpp" line="51"/>
         <location filename="../src/gui/guimainwindow.cpp" line="340"/>
         <source>Open file</source>
-        <translation>Hap skedarin</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/guimainwindow.cpp" line="53"/>
         <source>Recent files</source>
-        <translation>Skedarët e fundit</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/guimainwindow.cpp" line="255"/>
         <source>Error</source>
-        <translation>Gabim</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/guimainwindow.cpp" line="340"/>
         <source>All files</source>
-        <translation>Të gjithë skedarët</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/guimainwindow.cpp" line="376"/>
         <source>Missing Resources</source>
-        <translation>Burime mungojnë</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/guimainwindow.cpp" line="377"/>
         <source>The following resources are missing from the MSIX package</source>
-        <translation>Burimet e mëposhtme mungojnë nga paketa MSIX</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/guimainwindow.cpp" line="377"/>
         <source>Path</source>
-        <translation>Rruga</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/gui/guimainwindow.cpp" line="378"/>
         <source>
+
 Would you like to download them now?</source>
-        <translation>
-Dëshironi t&apos;i shkarkoni tani?</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -174,42 +174,42 @@ Dëshironi t&apos;i shkarkoni tani?</translation>
     <message>
         <location filename="../src/lite/litemainwindow.ui" line="23"/>
         <source>File name</source>
-        <translation>Emri i skedarit</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/lite/litemainwindow.ui" line="124"/>
         <source>Scan</source>
-        <translation>Skanim</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/lite/litemainwindow.ui" line="144"/>
         <source>Exit</source>
-        <translation>Dalje</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/lite/litemainwindow.cpp" line="48"/>
         <source>Flags</source>
-        <translation>Flamuj</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/lite/litemainwindow.cpp" line="51"/>
         <source>Databases</source>
-        <translation>Baza të dhënash</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/lite/litemainwindow.cpp" line="110"/>
         <source>Open file</source>
-        <translation>Hap skedarin</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/lite/litemainwindow.cpp" line="110"/>
         <source>All files</source>
-        <translation>Të gjithë skedarët</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/lite/litemainwindow.cpp" line="147"/>
         <source>msec</source>
-        <translation>msec</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
